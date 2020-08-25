@@ -1,6 +1,6 @@
 package mins.study.store.app.repository;
 
-import mins.study.store.app.entity.Member;
+import mins.study.store.app.domain.Member;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
