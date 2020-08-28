@@ -1,5 +1,6 @@
 package mins.study.store.app.repository;
 
+import lombok.RequiredArgsConstructor;
 import mins.study.store.app.domain.Member;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,12 +10,12 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+//    @PersistenceContext
+    private final EntityManager em;
 
-    @Transactional
     public void save(Member member) {
         em.persist(member);
     }
@@ -29,8 +30,8 @@ public class MemberRepository {
     }
 
     public List<Member> findByName(String name) {
-        return em.createQuery("select m from Member m where m.name = :name", Member.class)
-                .setParameter("name", name)
+        return em.createQuery("select m from Member m", Member.class)
+//                .setParameter("name", name)
                 .getResultList();
     }
 }
