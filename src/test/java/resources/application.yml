@@ -7,18 +7,15 @@ spring:
     cache: false
 
   datasource:
-    url: jdbc:mysql://localhost:3306/store
-    username: root
-    password: root!123123
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
+    url: jdbc:h2:mem:store
+    driver-class-name: org.h2.Driver
   h2:
     console:
       enabled: true
       path: /h2
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
 
     # sql을 보여줌
 #    show-sql: true
