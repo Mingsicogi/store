@@ -99,6 +99,16 @@ class OrderServiceTest {
 
     @Test
     void cancelOrder() {
+        //GIVE
+        int orderCount = 100;
+        Long orderId = orderService.order(member.getId(), book.getId(), orderCount);
 
+        // WHEN
+        orderService.cancelOrder(orderId);
+
+        // THEN
+        Order order = orderRepository.findOne(orderId);
+        Assertions.assertEquals(totalQuantityOfBook, book.getStockQuantity());
+        Assertions.assertEquals(OrderStatus.CANCEL, order.getStatus());
     }
 }

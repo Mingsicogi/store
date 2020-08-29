@@ -64,6 +64,7 @@ public class Order {
         order.setMember(member);
         order.setDelivery(delivery);
         order.setOrderDate(LocalDateTime.now());
+        order.setStatus(OrderStatus.ORDER);
 
         for (OrderItem orderItem : orderItems) {
             order.getOrderItems().add(orderItem);
@@ -79,6 +80,7 @@ public class Order {
         }
 
         this.getOrderItems().forEach(OrderItem::cancel);
+        this.setStatus(OrderStatus.CANCEL);
     }
 
     // 전체 주문 가격 조회
