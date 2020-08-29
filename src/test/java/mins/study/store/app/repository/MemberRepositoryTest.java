@@ -4,6 +4,7 @@ import mins.study.store.app.domain.Address;
 import mins.study.store.app.domain.Member;
 import mins.study.store.app.exception.DuplicationException;
 import mins.study.store.app.service.MemberService;
+import mins.testConfig.CustomTestConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,11 +17,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-@DataJpaTest
-@EnableAutoConfiguration
+@CustomTestConfig
 @ContextConfiguration(classes = {MemberRepository.class})
-@EntityScan(basePackages = {"mins.study.store.app.domain"})
-@Transactional
 class MemberRepositoryTest {
 
     @Autowired
