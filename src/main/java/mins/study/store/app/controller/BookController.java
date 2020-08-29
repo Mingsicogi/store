@@ -10,7 +10,6 @@ public class BookController {
     @GetMapping("/hello")
     public String hello(Model model) {
         model.addAttribute("data", "Hello Thymeleaf");
-
         return "hello";
     }
 }
