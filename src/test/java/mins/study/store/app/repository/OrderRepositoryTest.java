@@ -78,4 +78,25 @@ class OrderRepositoryTest {
         Order dbInfoOrder = orderRepository.findOne(order.getId());
         Assertions.assertTrue(dbInfoOrder.getOrderItems().stream().anyMatch(orderedItem -> book.getName().equals(orderedItem.getItem().getName())));
     }
+
+    @Test
+    void findAll() {
+        // GIVE
+        OrderItem orderItem = OrderItem.createOrderItem(book, book.getPrice(), 10);
+        Delivery delivery = new Delivery();
+        delivery.setAddress(member.getAddress());
+        delivery.setStatus(DeliveryStatus.READY);
+        Order order = Order.createOrder(member, delivery, orderItem);
+        orderRepository.save(order);
+
+        OrderSearch orderSearch = new OrderSearch();
+//        orderSearch.setMemberName("minssogi");
+        orderSearch.setOrderStatus(OrderStatus.ORDER);
+
+        // WHEN
+        List<Order> orders = orderRepository.findAll(orderSearch);
+
+        // THEN
+        Assertions.assertTrue(orders.stream().anyMatch(findOrder -> member.getName().equals(findOrder.getMember().getName())));
+    }
 }
