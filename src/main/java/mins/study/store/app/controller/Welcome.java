@@ -9,6 +9,6 @@ public class Welcome {
     @RequestMapping("/")
     public String home() {
 
-        return "home";
+        return "welcome";
     }
 }

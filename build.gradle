@@ -25,9 +25,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.querydsl:querydsl-jpa'
     implementation 'org.apache.commons:commons-lang3'
+    implementation "org.springframework.boot:spring-boot-devtools"
 
     compileOnly 'org.projectlombok:lombok'
-    compileOnly "org.springframework.boot:spring-boot-devtools"
 
     runtimeOnly 'mysql:mysql-connector-java'
 
