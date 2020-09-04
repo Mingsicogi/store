@@ -1,1 +1,1 @@
-# resell store
+# Re-Sell store
