@@ -18,7 +18,7 @@ spring:
       path: /h2
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
 
     # sql을 보여줌
 #    show-sql: true
