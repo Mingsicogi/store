@@ -5,6 +5,7 @@ import mins.study.store.app.domain.item.Book;
 import mins.study.store.app.domain.item.Item;
 import mins.study.store.app.service.ItemService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,17 +65,22 @@ public class ItemController {
     }
 
     @PostMapping("/items/{itemId}/edit")
+    @Transactional
     public String updateItem(BookForm form) {
-        Book book = new Book();
+        //        Book book = new Book();
+        //
+        //        book.setIsbn(form.getIsbn());
+        //        book.setAuthor(form.getAuthor());
+        //        book.setStockQuantity(form.getStockQuantity());
+        //        book.setPrice(form.getPrice());
+        //        book.setName(form.getName());
+        //        book.setId(form.getId());
+        //
+        //        itemService.saveItem(book);
 
-        book.setIsbn(form.getIsbn());
-        book.setAuthor(form.getAuthor());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setPrice(form.getPrice());
-        book.setName(form.getName());
-        book.setId(form.getId());
-
-        itemService.saveItem(book);
+        // merge 를 통한 업데이트에서 변경감지를 통한 업데이트로 기능 수정
+        Book book = (Book) itemService.findOne(form.getId());
+        book.updateBook(form.getAuthor(), form.getIsbn(), form.getName(), form.getPrice(), form.getStockQuantity());
 
         return "redirect:/items";
     }
